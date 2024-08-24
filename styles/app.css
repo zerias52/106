@@ -30,3 +30,23 @@ section {
     /*background-color: lightgray;*/
     flex: 1;
 }
+
+.task{
+    margin: 10px 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+
+}
+
+.task .info{
+    flex: 3;
+    text-wrap: auto;
+}
+.task .status{
+    flex: 1;
+}
+.task .date-budget{
+    flex: 1;
+}
