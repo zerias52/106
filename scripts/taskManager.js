@@ -77,11 +77,11 @@ function clearTask(){
         success: function(response){
             const tasks = JSON.parse(response);
             console.log(tasks);
-            for (let task of tasks){
-                if (task.name==="Brett"){
-                    deleteTask(task.id);
-                }
-            }
+            // for (let task of tasks){
+            //     if (task.name==="Brett"){
+            //         deleteTask(task.id);
+            //     }
+            // }
             $("#list .task").remove();
         },
         error: function(error) {
