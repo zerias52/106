@@ -7,7 +7,8 @@ function saveTask(){
     const status = $("#selStatus").val();
     const budget = $("#numBudget").val();
 
-    let taskSave = new Task(title, description, color, date, status, budget);
+
+    let taskSave = new Task(title, description, color, date, status, budget, );
     console.log(taskSave);
 
     //save to server(POST)
@@ -46,8 +47,66 @@ function displayTask(task){
     $("#list").append(syntax);
 }
 
+//create loadTasks function
+function loadTask(){
+    console.log("Hello from loadTask")
+
+    $.ajax({
+        type: "GET",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks",
+        success: function(response){
+            const tasks = JSON.parse(response);
+            console.log(tasks);
+            for (let task of tasks){
+                if (task.name==="Brett"){
+                    displayTask(task);
+                }
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        },
+    });
+}
+
+//create clearTask function
+function clearTask(){
+    $.ajax({
+        type: "GET",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks",
+        success: function(response){
+            const tasks = JSON.parse(response);
+            console.log(tasks);
+            for (let task of tasks){
+                if (task.name==="Brett"){
+                    deleteTask(task.id);
+                }
+            }
+            $("#list .task").remove();
+        },
+        error: function(error) {
+            console.log(error);
+        },
+    });
+}
+
+function deleteTask(task){
+    $.ajax({
+        type: "DELETE",
+        url: "http://fsdiapi.azurewebsites.net/api/tasks/",
+        success: function(response){
+            console.log("Task Deleted:", response);
+        },
+        error: function(error) {
+            console.log(error);
+        },
+    })
+}
+
 function init(){
     $("#btnSave").click(saveTask);
+    $("#btnClear").click(clearTask);
+    loadTask()
 
 }
 

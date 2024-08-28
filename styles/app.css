@@ -37,7 +37,15 @@ section {
     display: flex;
     align-items: center;
     border: 1px solid;
+    border-radius: 10px;
+}
 
+.taskHeader{
+    margin: auto;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .task .info{
